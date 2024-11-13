@@ -6,7 +6,6 @@ import phonenumbers
 from datetime import datetime,timedelta
 import schedule
 import time
-from telethon import TelegramClient
 from phonenumbers import geocoder
 import requests,sys,datetime
 import yt_dlp
@@ -18,7 +17,6 @@ import io
 import telebot
 import tempfile
 from telebot import util
-from colorama import Fore
 import time,os
 import pytube
 from pytube import YouTube

@@ -839,7 +839,9 @@ def premium_plan(message):
 WEBHOOK_URL = "https://rot-rt1o.onrender.com"  
 bot.remove_webhook()
 bot.set_webhook(url=WEBHOOK_URL)
-
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 
 #bot.infinity_polling()

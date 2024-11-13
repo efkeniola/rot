@@ -842,4 +842,4 @@ bot.set_webhook(url=WEBHOOK_URL)
 
 
 
-bot.infinity_polling()
+#bot.infinity_polling()

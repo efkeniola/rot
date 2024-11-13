@@ -15,3 +15,4 @@ requests-html==0.10.0
 schedule==1.2.2
 yt_dlp
 fastapi
+uvicorn

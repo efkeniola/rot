@@ -1,0 +1,4 @@
+name: Efk
+services:
+  - name: efk
+    run: "python to.py"

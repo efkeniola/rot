@@ -54,6 +54,8 @@ def handle(message):
                     pre(message)
                 elif message.text == '/renew':
                     ren(message)
+                elif message.text == '/new':
+                    new_user(message)
                 elif message.text == '/phone_details':
                     phone_d(message)
                 elif message.text == '/youtube':

@@ -850,10 +850,9 @@ async def receive_update(request: Request):
     bot.process_new_updates([update])
     return {"status": "ok"}
 
-# Start the FastAPI app
+import os
+import uvicorn
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=5000)
-
-
-#bot.infinity_polling()
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port)

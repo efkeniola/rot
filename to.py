@@ -837,7 +837,26 @@ def premium_plan(message):
     let_text='Welcome to Fast Tools \n About our PREMIUM TOOLS \n BENEFIT OF USING PREMIUM SERVIE\n 1. GET ACCESS TO NEW TOOLS \n 2. MORE FAST THEN BASIC USER \n 3. ACCESS TO OUR PRIVATE CHANNEL FOR QUICK UPDATE OR MONEY UPDATE\n TO MAKE PAYMENT ENTER (/donate)\nOR CHAT ADMIN @EFK$$$\n WHATSAPP NUMBER(ADMIN): +2348057091133\n NB: SUBSCRIBTION IS MONTHLY PLAN FOR PRICE SEND DM TO ANY OF THE ADMIN  @EfkeniolaWebDeveloper  '
     bot.send_message(message.chat.id,let_text)
             
-bot.infinity_polling()
+import os
+from flask import Flask, request
 
 
-#bot = telebot.TeleBot("YOUR_BOT_TOKEN")
+server = Flask(__name__)
+
+
+@server.route('/' + api, methods=['POST'])
+def receive_update():
+    json_str = request.get_data().decode('UTF-8')
+    update = telebot.types.Update.de_json(json_str)
+    bot.process_new_updates([update])
+    return "!", 200
+
+@server.route("/")
+def webhook_setup():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://equivalent-edee-efk-624afff4.koyeb.app/' + api)
+    return "Webhook set", 200
+
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=8000)
+    

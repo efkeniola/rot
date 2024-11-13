@@ -841,22 +841,33 @@ import os
 from flask import Flask, request
 
 
-server = Flask(__name__)
+app = Flask(__name__)
 
+# Handle '/start' and '/help' commands
 
-@server.route('/' + api, methods=['POST'])
+# Route to handle updates from Telegram
+@app.route('/' + api, methods=['POST'])
 def receive_update():
+    # Retrieve incoming updates from Telegram
     json_str = request.get_data().decode('UTF-8')
     update = telebot.types.Update.de_json(json_str)
+    
+    # Process the update
     bot.process_new_updates([update])
-    return "!", 200
+    
+    return "OK", 200
 
-@server.route("/")
+# Route to set the webhook
+@app.route('/')
 def webhook_setup():
+    # Remove previous webhooks (if any)
     bot.remove_webhook()
-    bot.set_webhook(url='https://equivalent-edee-efk-624afff4.koyeb.app/' + api)
+    
+    # Set the new webhook URL for your Koyeb app
+    bot.set_webhook(url="https://equivalent-edee-efk-624afff4.koyeb.app/" + api)
+    
     return "Webhook set", 200
 
+# Run the Flask app on port 8000
 if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=8000)
-    
+    app.run(host="0.0.0.0", port=8000)

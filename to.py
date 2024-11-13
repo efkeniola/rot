@@ -835,26 +835,23 @@ def premium_plan(message):
     let_text='Welcome to Fast Tools \n About our PREMIUM TOOLS \n BENEFIT OF USING PREMIUM SERVIE\n 1. GET ACCESS TO NEW TOOLS \n 2. MORE FAST THEN BASIC USER \n 3. ACCESS TO OUR PRIVATE CHANNEL FOR QUICK UPDATE OR MONEY UPDATE\n TO MAKE PAYMENT ENTER (/donate)\nOR CHAT ADMIN @EFK$$$\n WHATSAPP NUMBER(ADMIN): +2348057091133\n NB: SUBSCRIBTION IS MONTHLY PLAN FOR PRICE SEND DM TO ANY OF THE ADMIN  @EfkeniolaWebDeveloper  '
     bot.send_message(message.chat.id,let_text)
             
-from flask import Flask, request
+from fastapi import FastAPI, Request
 
-#bot = telebot.TeleBot("YOUR_TELEGRAM_BOT_TOKEN")
-app = Flask(__name__)
 
-# Ensure you are using the PORT from Render
-port = int(os.getenv("PORT", 5000))  # 5000 is fallback if PORT is not found
+#bot = telebot.TeleBot("YOUR_BOT_TOKEN")
+app = FastAPI()
 
-@app.route("/", methods=['POST'])
-def receive_update():
-    json_str = request.get_data().decode("UTF-8")
+@app.post("/")
+async def receive_update(request: Request):
+    json_str = await request.body()
     update = telebot.types.Update.de_json(json_str)
     bot.process_new_updates([update])
-    return "OK", 200               
-WEBHOOK_URL = "https://rot-rt1o.onrender.com"  
-bot.remove_webhook()
-bot.set_webhook(url=WEBHOOK_URL)
+    return {"status": "ok"}
+
+# Start the FastAPI app
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=5000)
 
 
 #bot.infinity_polling()

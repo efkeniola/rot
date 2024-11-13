@@ -836,6 +836,9 @@ def premium_plan(message):
     bot.send_message(message.chat.id,let_text)
             
                
+WEBHOOK_URL = "https://rot-rt1o.onrender.com"  
+bot.remove_webhook()
+bot.set_webhook(url=WEBHOOK_URL)
 
 
 

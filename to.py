@@ -837,22 +837,7 @@ def premium_plan(message):
     let_text='Welcome to Fast Tools \n About our PREMIUM TOOLS \n BENEFIT OF USING PREMIUM SERVIE\n 1. GET ACCESS TO NEW TOOLS \n 2. MORE FAST THEN BASIC USER \n 3. ACCESS TO OUR PRIVATE CHANNEL FOR QUICK UPDATE OR MONEY UPDATE\n TO MAKE PAYMENT ENTER (/donate)\nOR CHAT ADMIN @EFK$$$\n WHATSAPP NUMBER(ADMIN): +2348057091133\n NB: SUBSCRIBTION IS MONTHLY PLAN FOR PRICE SEND DM TO ANY OF THE ADMIN  @EfkeniolaWebDeveloper  '
     bot.send_message(message.chat.id,let_text)
             
-from fastapi import FastAPI, Request
+bot.infinity_polling()
 
 
 #bot = telebot.TeleBot("YOUR_BOT_TOKEN")
-app = FastAPI()
-
-@app.post("/")
-async def receive_update(request: Request):
-    json_str = await request.body()
-    update = telebot.types.Update.de_json(json_str)
-    bot.process_new_updates([update])
-    return {"status": "ok"}
-
-import os
-import uvicorn
-
-if __name__ == "__main__":
-    port = os.environ.get("PORT",5000)
-    uvicorn.run("to:app", host="0.0.0.0", port=port)

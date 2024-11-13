@@ -13,4 +13,4 @@ rembg==2.0.59
 requests==2.32.3
 requests-html==0.10.0
 schedule==1.2.2
-
+yt_dlp

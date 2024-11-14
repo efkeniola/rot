@@ -864,7 +864,7 @@ def webhook_setup():
     bot.remove_webhook()
     
     # Set the new webhook URL for your Koyeb app
-    bot.set_webhook(url="https://equivalent-edee-efk-624afff4.koyeb.app/" + api)
+    bot.set_webhook(url="equivalent-edee-efk-624afff4.koyeb.app/" + api)
     
     return "Webhook set", 200
 

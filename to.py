@@ -338,7 +338,7 @@ def youtube(mes,message):
         tt={
         'format':'best',
         'outtmpl':tempfile.gettempdir() + 'downloads/%(title)s.%(ext)s',
-        'cookiefile':'C:/Users/User/Desktop/cookies.txt',
+        'cookiefile':'./cookies.txt',
         'progress_hooks': [lambda to:progess(to,message)],
             }
         try:
